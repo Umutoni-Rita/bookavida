@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes Anim {
+    from {
+      background-color: dimgrey;
+    }
+    to {
+      background-color: black;
+    }
+  }
+
+.animate{
+    animation: Anim infinite 20s linear;
+}
