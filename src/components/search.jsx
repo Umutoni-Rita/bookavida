@@ -10,8 +10,9 @@ export default function SearchBook() {
   const [searchTerm, setSearchTerm] = useState("");
   const [bookDetail, setBookDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [maxResults, setMaxResults] = useState(20);
 
-  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}`;
+  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}&maxResults=${maxResults}`;
 
   const generateBook = (event) => {
     if (event.key === "Enter" || event.type === "click") {
@@ -42,6 +43,12 @@ export default function SearchBook() {
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={generateBook}
           className=" p-2 w-8/12"
+        />
+        <input
+          type="number"
+          id="maxResults"
+          value={`Results: ${maxResults}`}
+          onChange={(e) => setMaxResults(e.target.value)}
         />
         <button
           className="p-3 m-3 border-blue-400 border rounded-md"

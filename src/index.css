@@ -2,15 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes Anim {
-    from {
-      background-color: dimgrey;
-    }
-    to {
-      background-color: black;
-    }
+.loader {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
 
-.animate{
-    animation: Anim infinite 20s linear;
+  100% {
+    transform: rotate(360deg);
+  }
 }
