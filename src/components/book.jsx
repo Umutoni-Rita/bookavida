@@ -9,7 +9,7 @@ export default function Book ({ id, coverSrc, title, author, releaseYear, bookLi
                 <h1 className='font-semibold text-lg overflow-hidden whitespace-nowrap overflow-ellipsis mb-1'>{title}</h1>
                 <h2 className='font-medium text-base mb-1'>{author}</h2>
                 {releaseYear && <p className='font-normal text-sm mb-1'>Release Year: {releaseYear}</p>}
-                <a href={bookLink} target='_blank' rel='noopener noreferrer' className='text-blue-500 underline hover:text-blue-700'>Go to book</a>
+                <a href={bookLink} target='_blank' rel='noopener noreferrer' className=' hover:text-blue-700'>See more ...</a>
             </div>
         </div>
     );
