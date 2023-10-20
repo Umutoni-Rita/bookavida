@@ -1,11 +1,10 @@
 import React from 'react';
-// import SearchBook from './components/search';
-import BookSummary from './components/bookSummary';
+import SearchBook from './components/search';
 
 function App() {
   return (
-    <div className="App">
-      <BookSummary />
+    <div className="App overflow-hidden">
+      <SearchBook />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function SearchBook() {
   const [bookDetail, setBookDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}&maxResults=${25}`;
+  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}&maxResults=${35}`;
 
   const generateBook = (event) => {
     if (event.key === "Enter" || event.type === "click") {
@@ -41,7 +41,7 @@ export default function SearchBook() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={generateBook}
-          className=" p-2 w-8/12"
+          className=" p-2 w-8/12 min-[360px]:w-10/12"
         />
         <button
           className="p-3 m-3 border-blue-400 border rounded-md"
@@ -62,11 +62,12 @@ export default function SearchBook() {
             <Book
               key={book.id}
               coverSrc={
-                book.volumeInfo.imageLinks?.sThumbnail || coverUnavailable
+                book.volumeInfo.imageLinks?.smallThumbnail || coverUnavailable
               }
               title={book.volumeInfo.title}
               author={book.volumeInfo.authors}
               bookLink={book.volumeInfo.previewLink}
+              releaseYear={book.volumeInfo.publisherDate}
             />
           ))
         )}
