@@ -41,10 +41,10 @@ export default function SearchBook() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={generateBook}
-          className=" p-2 w-8/12 min-[360px]:w-10/12"
+          className=" p-2 w-10/12"
         />
         <button
-          className="p-3 m-3 border-blue-400 border rounded-md"
+          className="p-2 m-3 border-blue-400 border rounded-md"
           onClick={generateBook}
           disabled={isLoading}
         >
