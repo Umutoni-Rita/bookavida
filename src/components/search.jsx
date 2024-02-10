@@ -33,8 +33,13 @@ export default function SearchBook() {
 
   return (
     <section>
-      <div className=" bg-slate-500 w-full flex justify-center items-center p-10">
-        <input
+      <div className="bg-slate-500 w-full flex-col justify-center items-center p-10">
+      <div className="my-4 text-center">
+        <p className="text-gray-900">
+          Welcome to the Bookavida! Enter the title, author, or any keyword related to the book you're looking for. Press Enter or click "Search" to get results.
+        </p>
+      </div>
+        <div><input
           type="text"
           name="search"
           id="search"
@@ -49,8 +54,9 @@ export default function SearchBook() {
           disabled={isLoading}
         >
           {isLoading ? <Loader /> : "Search"}
-        </button>
+        </button></div>
       </div>
+      
 
       <div className="flex flex-wrap justify-around m-3">
         {bookDetail.length === 0 ? (
