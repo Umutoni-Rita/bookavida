@@ -9,4 +9,4 @@ Save books to your personal reading list for future reference
 Responsive design for easy use on desktop or mobile devices
 
 ## Getting Started
-To get started with Bookavida, simply visit our website at [bookavida.vercel.app]. You can search for books using the search bar, and use the filters to refine your results. Once you find a book you like, click on it to see more details and add it to your reading list.
+To get started with Bookavida, simply visit our website at [bookavida.vercel.app](bookavida.vercel.app). You can search for books using the search bar, and use the filters to refine your results. Once you find a book you like, click on it to see more details and add it to your reading list.
