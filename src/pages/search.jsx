@@ -3,8 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import { API_KEY } from "../utils/api";
 import coverUnavailable from "../assets/cover-unavailable.jpeg";
-import Loader from "./loader";
-import Book from "./book";
+import Loader from "../components/loader";
+import Book from "../components/book";
 
 export default function SearchBook() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -61,7 +61,7 @@ export default function SearchBook() {
       <div className="flex flex-wrap justify-around m-3">
         {bookDetail.length === 0 ? (
           <div>
-            <p>Sorry! Search results not available</p>
+            <p className="text-gray-400">Results will be displayed here</p>
           </div>
         ) : (
           bookDetail.map((book) => (
