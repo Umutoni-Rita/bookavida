@@ -10,8 +10,8 @@ const BookSummary = ({ id, coverSrc, title, author, releaseYear, summary, onClos
                 </button>
                 <img src={coverSrc || coverUnavailable} alt="cover" className="w-48 h-auto mb-4" />
                 <h1 className="text-xl font-bold mb-2">{title || 'Title'}</h1>
-                <h2 className="text-lg font-semibold mb-2">{author.join(', ') || 'Author'}</h2>
-                <p className="text-sm text-gray-700 mb-4">{summary || 'Summary'}</p>
+                <h2 className="text-lg font-semibold mb-2">{author.join(', ')}</h2>
+                <p className="text-sm text-gray-700 mb-4">{summary}</p>
                 {/* Additional content here */}
             </div>
         </div>
