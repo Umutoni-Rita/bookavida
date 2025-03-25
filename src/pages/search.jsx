@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { API_KEY } from "../utils/api";
 import coverUnavailable from "../assets/cover-unavailable.jpeg";
@@ -11,7 +10,7 @@ export default function SearchBook() {
   const [bookDetail, setBookDetail] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}&maxResults=${35}`;
+  const api_url = `https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&key=${API_KEY}&maxResults=35`;
 
   const generateBook = (event) => {
     if (event.key === "Enter" || event.type === "click") {
@@ -19,8 +18,8 @@ export default function SearchBook() {
       axios
         .get(api_url)
         .then((res) => {
-          setBookDetail(res.data.items);
-          console.log(bookDetail);
+          setBookDetail(res.data.items || []);
+          console.log(res.data.items);
         })
         .catch((err) => {
           console.log(err);
@@ -32,37 +31,43 @@ export default function SearchBook() {
   };
 
   return (
-    <section>
-      <div className="w-full flex-col justify-center items-center p-10 bg-orange-300">
-      <div className="my-4 text-center">
-        <p className="text-orange-800">
-          Welcome to the Bookavida! Enter the title, author, or any keyword related to the book you're looking for. Press Enter or click "Search" to get results.
+    <section className="min-h-screen w-full bg-gradient-to-br from-[#D4DE95] via-white to-[#BAC095]">
+      {/* Header Section */}
+      <div className="w-full flex flex-col justify-center items-center p-6 md:p-10 bg-[#BAC095] shadow-lg">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#3D4127] mb-2">
+          Bookavida
+        </h1>
+        <p className="text-[#636B2F] text-center max-w-md mb-4">
+          Search for books by title, author, or keyword. Hit Enter or click
+          "Search" to explore!
         </p>
+        <div className="flex w-full max-w-lg">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={generateBook}
+            className="flex-grow p-3 rounded-l-md border border-[#BAC095] bg-white focus:outline-none focus:ring-2 focus:ring-[#636B2F] text-[#3D4127] placeholder-[#636B2F]"
+            placeholder="Enter a book title or author..."
+          />
+          <button
+            className="px-5 py-3 bg-[#636B2F] text-white rounded-r-md hover:bg-[#3D4127] transition-colors duration-200 disabled:opacity-50"
+            onClick={generateBook}
+            disabled={isLoading}
+          >
+            {isLoading ? <Loader /> : "Search"}
+          </button>
+        </div>
       </div>
-        <div><input
-          type="text"
-          name="search"
-          id="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={generateBook}
-          className=" p-2 w-10/12"
-        />
-        <button
-          className="px-5 py-2 m-3 border-orange-500 border rounded-md"
-          onClick={generateBook}
-          disabled={isLoading}
-        >
-          {isLoading ? <Loader /> : "Search"}
-        </button></div>
-      </div>
-      
 
-      <div className="flex flex-wrap justify-around m-3">
+      {/* Results Section */}
+      <div className="flex flex-col justify-center items-center p-6">
         {bookDetail.length === 0 ? (
-          <div>
-            <p className="text-gray-400">Results will be displayed here</p>
-          </div>
+          <p className="text-[#636B2F] italic">
+            Results will appear here after you search.
+          </p>
         ) : (
           bookDetail.map((book) => (
             <Book
@@ -71,9 +76,9 @@ export default function SearchBook() {
                 book.volumeInfo.imageLinks?.smallThumbnail || coverUnavailable
               }
               title={book.volumeInfo.title}
-              author={book.volumeInfo.authors || []}
+              author={book.volumeInfo.authors || ["Unknown Author"]}
               bookLink={book.volumeInfo.previewLink}
-              releaseYear={book.volumeInfo.publisherDate}
+              releaseYear={book.volumeInfo.publishedDate}
               bookDescription={book.volumeInfo.description}
               download={book.accessInfo.pdf.acsTokenLink}
             />
